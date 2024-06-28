@@ -8,11 +8,7 @@ const Lista=({exercises})=>(
                     return(
                         <Tarjeta
                         key={exercise.id}
-                        title={exercise.title}
-                        description={exercise.description}
-                        img={exercise.img}
-                        leftColor={exercise.leftColor}
-                        rightColor={exercise.rightColor}
+                       {...exercise}
             />
                     )
                 }

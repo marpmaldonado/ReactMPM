@@ -1,7 +1,10 @@
 import React from "react";
-import Formu from '../Componentes/Formulario'
-import Tarjeta from "../Componentes/Tarjeta";
-class Nueva extends React.Component{
+import Dibujar from "../Componentes/Dibujar";
+
+/* const Contenedor=()=>{
+
+} */
+class Contenedor extends React.Component{
     state={
         form:{
             title: '',
@@ -21,6 +24,7 @@ class Nueva extends React.Component{
     }
     handleSubmit=async e=>{
         e.preventDefault()
+        
         try{
             let config={
                 method:'POST',
@@ -33,6 +37,7 @@ class Nueva extends React.Component{
             let res= await fetch('http://localhost:8000/api/info',config)
             let json=await res.json()
             console.log(json)
+            this.props.navigate('/Lista')
         }
         catch(error){
 
@@ -40,22 +45,11 @@ class Nueva extends React.Component{
         console.log(this.state)
     }
 render(){
-    return(
-        <div className="row">
-            <div className="col-sm">
-                <Tarjeta
-                {...this.state.form}
-                />
-            </div>
-            <div className="col-sm">
-                <Formu
-                    onSubmit={this.handleSubmit}
-                    onChange={this.handleChange}
-                    form={this.state.form}
-                />
-            </div>
-        </div>
-    )
+    return <Dibujar
+            form={this.state.form}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+           />
 }    
 }
-export default Nueva
+export default Contenedor
